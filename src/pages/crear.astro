@@ -1,0 +1,23 @@
+<script>
+    import { crearJugador } from '../servicios/jugadores.js'
+  
+    const form = document.getElementById('form')!
+  
+    form.onsubmit = async (e) => {
+      e.preventDefault()
+  
+      const nombre = (document.getElementById('nombre') as HTMLInputElement).value
+      const posicion = (document.getElementById('posicion') as HTMLInputElement).value
+      const club = (document.getElementById('club') as HTMLInputElement).value
+  
+      await crearJugador({
+        nombre,
+        posicion,
+        club
+      })
+  
+      alert('Jugador creado')
+  
+      window.location.href = '/'
+    }
+  </script>
