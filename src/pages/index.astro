@@ -3,20 +3,23 @@ import { getJugadores } from '../servicios/jugadores.js'
 
 const jugadores = await getJugadores()
 ---
+
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <title>Catálogo</title>
   </head>
+
   <body>
+    <h1>Catálogo de jugadores ⚽</h1>
+
+    {jugadores.length === 0 && <p>No hay jugadores</p>}
+
+    {jugadores.map(j => (
+      <div>
+        <h2>{j.nombre}</h2>
+        <p>{j.posicion} - {j.club}</p>
+      </div>
+    ))}
   </body>
-<h1>Catálogo de jugadores ⚽</h1>
-
-{jugadores.length === 0 && <p>No hay jugadores</p>}
-
-{jugadores.map(j => (
-  <div>
-    <h2>{j.nombre}</h2>
-    <p>{j.posicion} - {j.club}</p>
-  </div>
-))}
+</html>

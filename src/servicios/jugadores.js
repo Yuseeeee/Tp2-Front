@@ -1,25 +1,18 @@
 import { supabase } from './supabase'
 
 export async function getJugadores() {
+  console.log("intentando conectar...")
+
   const { data, error } = await supabase
     .from('jugadores')
     .select('*')
 
+  console.log("DATA:", data)
+  console.log("ERROR:", error)
+
   if (error) {
-    console.error(error)
     return []
   }
 
   return data
 }
-export async function crearJugador(jugador) {
-    const { data, error } = await supabase
-      .from('jugadores')
-      .insert([jugador])
-  
-    if (error) {
-      console.error(error)
-    }
-  
-    return data
-  }
