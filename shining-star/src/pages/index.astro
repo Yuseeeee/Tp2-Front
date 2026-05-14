@@ -1,0 +1,644 @@
+---
+const positions = ["Todos", "GK", "RB", "CB", "LB", "CM", "ST", "RW", "LW"];
+
+
+  
+const players = [
+
+  {
+    name: "Courtois",
+    position: "GK",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/108390-1682581541.png"
+  },
+
+  {
+    name: "Ederson",
+    position: "GK",
+    nation: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/238223-1682581848.png"
+  },
+
+  {
+    name: "Ter Stegen",
+    position: "GK",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/74857-1682581488.png"
+  },
+
+  {
+    name: "Hakimi",
+    position: "RB",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Flag_of_Morocco.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/c/c7/Ligue1.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/398073-1683291495.png"
+  },
+
+  {
+    name: "Carvajal",
+    position: "RB",
+    nation: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/138927-1697724512.png"
+  },
+
+  {
+    name: "Alexander-Arnold",
+    position: "RB",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/314353-1682581996.png"
+  },
+
+  {
+    name: "Van Dijk",
+    position: "CB",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/139208-1620651710.png"
+  },
+
+  {
+    name: "Rúben Dias",
+    position: "CB",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/258004-1682581643.png"
+  },
+
+  {
+    name: "Araújo",
+    position: "CB",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Uruguay.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/480267-1682582186.png"
+  },
+
+  {
+    name: "Saliba",
+    position: "CB",
+    nation: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/495666-1682582198.png"
+  },
+
+  {
+    name: "Theo Hernández",
+    position: "LB",
+    nation: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/339808-1682581615.png"
+  },
+
+  {
+    name: "Davies",
+    position: "LB",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/d/df/Bundesliga_logo_%282017%29.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/424204-1682582208.png"
+  },
+
+  {
+    name: "Bellingham",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/581678-1693987944.png"
+  },
+
+  {
+    name: "De Bruyne",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/88755-1626449012.png"
+  },
+
+  {
+    name: "Rodri",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/357565-1682581705.png"
+  },
+
+  {
+    name: "Pedri",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/683840-1682582223.png"
+  },
+
+  {
+    name: "Valverde",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Uruguay.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/369081-1682582235.png"
+  },
+
+  {
+    name: "Musiala",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/d/df/Bundesliga_logo_%282017%29.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/580195-1682582245.png"
+  },
+
+  {
+    name: "Wirtz",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/d/df/Bundesliga_logo_%282017%29.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/598577-1682582257.png"
+  },
+
+  {
+    name: "Messi",
+    position: "RW",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/7/76/Major_League_Soccer_logo.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/28003-1671435885.png"
+  },
+
+  {
+    name: "Saka",
+    position: "RW",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/433177-1682582269.png"
+  },
+
+  {
+    name: "Salah",
+    position: "RW",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/148455-1682582281.png"
+  },
+
+  {
+    name: "Vinicius",
+    position: "LW",
+    nation: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/371998-1664869583.png"
+  },
+
+  {
+    name: "Leão",
+    position: "LW",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/357164-1682582295.png"
+  },
+
+  {
+    name: "Mbappé",
+    position: "ST",
+    nation: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/342229-1682683695.png"
+  },
+
+  {
+    name: "Haaland",
+    position: "ST",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/418560-1682582306.png"
+  },
+
+  {
+    name: "Kane",
+    position: "ST",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/d/df/Bundesliga_logo_%282017%29.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/132098-1682582316.png"
+  },
+
+  {
+    name: "Osimhen",
+    position: "ST",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/401923-1682582328.png"
+  },
+
+  {
+    name: "Álvarez",
+    position: "ST",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "https://img.a.transfermarkt.technology/portrait/big/576024-1682582339.png"
+  }
+
+];
+  
+
+  
+  
+  
+
+---
+
+<html lang="es">
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>TpIvoYuse</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+
+    body{
+      font-family:'Inter', sans-serif;
+      margin:0;
+      background:#f5f5f5;
+    }
+
+    /* NAVBAR */
+    .navbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:70px;
+      background:#39e735;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0 40px;
+      box-sizing:border-box;
+      z-index:1000;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logoContainer{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .logoCircle{
+      width:40px;
+      height:40px;
+      background:black;
+      border-radius:50%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .logoText{
+      font-size:24px;
+      font-weight:800;
+      color:black;
+    }
+
+    .navLinks{
+      display:flex;
+      gap:40px;
+    }
+
+    .navLinks a{
+      text-decoration:none;
+      color:black;
+      font-weight:700;
+      font-size:16px;
+      transition:0.2s;
+    }
+
+    .navLinks a:hover{
+      opacity:0.6;
+    }
+
+    /* MAIN */
+    main{
+      max-width:1300px;
+      margin:auto;
+      padding:120px 40px 40px;
+    }
+
+    /* HEADER */
+    .title{
+      font-size:56px;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+
+    .subtitle{
+      color:#777;
+      font-size:22px;
+      margin-bottom:40px;
+    }
+
+    /* SEARCH */
+    .searchContainer{
+      position:relative;
+      width:500px;
+      margin-bottom:40px;
+    }
+
+    .searchInput{
+      width:100%;
+      padding:16px 55px 16px 24px;
+      border-radius:999px;
+      border:3px solid black;
+      font-size:18px;
+      box-sizing:border-box;
+    }
+
+    .searchIcon{
+      position:absolute;
+      right:20px;
+      top:50%;
+      transform:translateY(-50%);
+      width:20px;
+      height:20px;
+    }
+
+    /* FILTERS */
+    .filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:60px;
+    }
+
+    .filterButton{
+      background:#39e735;
+      border:none;
+      padding:10px 22px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .filterButton:hover{
+      transform:scale(1.05);
+    }
+
+    /* SECTION */
+    .sectionTitle{
+      font-size:42px;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+
+    .sectionSubtitle{
+      color:#777;
+      font-size:20px;
+      margin-bottom:40px;
+    }
+
+    /* CARDS */
+    .playersGrid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:30px;
+    }
+
+    .playerCard{
+      width:210px;
+      background:#e5e7eb;
+      border-radius:35px;
+      padding:20px;
+      box-sizing:border-box;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      transition:0.25s;
+      cursor:pointer;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .playerCard:hover{
+      transform:scale(1.04);
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* PLAYER IMAGE */
+    .playerImageContainer{
+      width:140px;
+      height:140px;
+      border-radius:50%;
+      background:white;
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:flex-end;
+      margin-bottom:18px;
+    }
+
+    .playerImage{
+      width:115%;
+      object-fit:contain;
+    }
+
+    /* TEXT */
+    .playerName{
+      font-size:24px;
+      font-weight:800;
+      color:#333;
+      margin-bottom:4px;
+    }
+
+    .playerPosition{
+      color:#39e735;
+      font-size:18px;
+      font-weight:700;
+      margin-bottom:18px;
+    }
+
+    /* FLAGS */
+    .playerInfo{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .flag{
+      width:28px;
+      height:18px;
+      object-fit:cover;
+      border-radius:3px;
+    }
+
+    .leagueLogo{
+      width:22px;
+      height:22px;
+      object-fit:contain;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+
+    <div class="logoContainer">
+
+      <div class="logoCircle">
+
+        <svg class="text-[#39e735] w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+
+        </svg>
+
+      </div>
+
+      <h1 class="logoText">
+        TpIvoYuse
+      </h1>
+
+    </div>
+
+    <div class="navLinks">
+
+      <a href="#">
+        Tus 11's
+      </a>
+
+      <a href="#">
+        Arma tu 11
+      </a>
+
+    </div>
+
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HEADER -->
+    <h1 class="title">
+      Arma tu 11
+    </h1>
+
+    <p class="subtitle">
+      Elegí 1 jugador por posición
+    </p>
+
+    <!-- SEARCH -->
+    <div class="searchContainer">
+
+      <input
+        type="text"
+        placeholder="Buscar jugador..."
+        class="searchInput"
+      />
+
+      <svg xmlns="http://www.w3.org/2000/svg"
+        class="searchIcon"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor">
+
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        />
+
+      </svg>
+
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filters">
+
+      {positions.map((pos) => (
+
+        <button class="filterButton">
+
+          {pos}
+
+        </button>
+
+      ))}
+
+    </div>
+
+    <!-- SECTION -->
+    <h2 class="sectionTitle">
+      Jugadores
+    </h2>
+
+    <p class="sectionSubtitle">
+      Seleccioná tu jugador favorito
+    </p>
+
+    <!-- PLAYERS -->
+    <div class="playersGrid">
+
+      {players.map((player) => (
+
+        <div class="playerCard">
+
+          <!-- IMAGE -->
+          <div class="playerImageContainer">
+
+            <img
+              src={player.image}
+              alt={player.name}
+              class="playerImage"
+            />
+
+          </div>
+
+          <!-- NAME -->
+          <h3 class="playerName">
+
+            {player.name}
+
+          </h3>
+
+          <!-- POSITION -->
+          <p class="playerPosition">
+
+            {player.position}
+
+          </p>
+
+          <!-- INFO -->
+          <div class="playerInfo">
+
+            <img
+              src={player.nation}
+              class="flag"
+            />
+
+            <img
+              src={player.league}
+              class="leagueLogo"
+            />
+
+          </div>
+
+        </div>
+
+      ))}
+
+    </div>
+
+  </main>
+
+</body>
+</html>
