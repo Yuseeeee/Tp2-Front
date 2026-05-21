@@ -506,7 +506,7 @@ const players = [
 
         <svg class="text-[#39e735] w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
 
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
 
         </svg>
 
@@ -575,7 +575,10 @@ const players = [
 
       {positions.map((pos) => (
 
-        <button class="filterButton">
+        <button
+          class="filterButton"
+          onclick={`filterPlayers('${pos}')`}
+        >
 
           {pos}
 
@@ -599,7 +602,10 @@ const players = [
 
       {players.map((player) => (
 
-        <div class="playerCard">
+        <div
+          class="playerCard"
+          data-position={player.position}
+        >
 
           <!-- IMAGE -->
           <div class="playerImageContainer">
@@ -649,5 +655,38 @@ const players = [
 
   </main>
 
+  <!-- SCRIPT -->
+  <script>
+
+    const buttons = document.querySelectorAll(".filterButton");
+    const cards = document.querySelectorAll(".playerCard");
+  
+    buttons.forEach((button) => {
+  
+      button.addEventListener("click", () => {
+  
+        const position = button.textContent.trim();
+  
+        cards.forEach((card) => {
+  
+          const playerPosition = card.dataset.position;
+  
+          if(position === "Todos" || playerPosition === position){
+  
+            card.style.display = "flex";
+  
+          } else {
+  
+            card.style.display = "none";
+  
+          }
+  
+        });
+  
+      });
+  
+    });
+  
+  </script>
 </body>
 </html>
