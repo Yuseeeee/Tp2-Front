@@ -491,6 +491,60 @@ const players = [
       object-fit:contain;
     }
 
+    .selectedPlayer{
+  border:4px solid #39e735;
+  transform:scale(1.03);
+}
+.selectedSection{
+  margin-top:60px;
+}
+
+.selectedTitle{
+  font-size:32px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.selectedList{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding:0;
+}
+
+.selectedList li{
+  list-style:none;
+  background:white;
+  padding:14px 20px;
+  border-radius:14px;
+  width:300px;
+  font-weight:700;
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+.selectedHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.clearButton{
+  background:#ff3b3b;
+  color:white;
+  border:none;
+  padding:10px 18px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.clearButton:hover{
+  transform:scale(1.05);
+  opacity:0.9;
+}
+
   </style>
 
 </head>
@@ -588,6 +642,27 @@ const players = [
 
     </div>
 
+    <!-- SELECCIONADOS -->
+<div class="selectedSection">
+
+  <div class="selectedHeader">
+
+    <h2 class="selectedTitle">
+      Jugadores seleccionados
+    </h2>
+
+    <button id="clearButton" class="clearButton">
+      Eliminar lista
+    </button>
+
+  </div>
+
+  <ul id="selectedPlayersList" class="selectedList">
+
+  </ul>
+
+</div>
+
     <!-- SECTION -->
     <h2 class="sectionTitle">
       Jugadores
@@ -652,6 +727,7 @@ const players = [
       ))}
 
     </div>
+    
 
   </main>
 
@@ -661,6 +737,7 @@ const players = [
     const buttons = document.querySelectorAll(".filterButton");
     const cards = document.querySelectorAll(".playerCard");
   
+    // FILTRAR POR POSICION
     buttons.forEach((button) => {
   
       button.addEventListener("click", () => {
@@ -686,6 +763,58 @@ const players = [
       });
   
     });
+  
+    // SELECCIONAR JUGADORES
+      // LISTA
+  const selectedPlayersList = document.getElementById("selectedPlayersList");
+
+// SELECCIONAR JUGADORES
+cards.forEach((card) => {
+
+  card.addEventListener("click", () => {
+
+    card.classList.toggle("selectedPlayer");
+
+    updateSelectedPlayers();
+
+  });
+
+});
+
+// ACTUALIZAR LISTA
+function updateSelectedPlayers(){
+
+  selectedPlayersList.innerHTML = "";
+
+  const selectedCards = document.querySelectorAll(".selectedPlayer");
+
+  selectedCards.forEach((card) => {
+
+    const playerName = card.querySelector(".playerName").textContent;
+
+    const li = document.createElement("li");
+
+    li.textContent = playerName;
+
+    selectedPlayersList.appendChild(li);
+
+  });
+
+}
+  // BORRAR LISTA
+  const clearButton = document.getElementById("clearButton");
+
+  clearButton.addEventListener("click", () => {
+
+    cards.forEach((card) => {
+
+      card.classList.remove("selectedPlayer");
+
+    });
+
+    updateSelectedPlayers();
+
+  });
   
   </script>
 </body>
