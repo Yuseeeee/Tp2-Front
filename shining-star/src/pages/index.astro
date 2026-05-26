@@ -1,0 +1,991 @@
+---
+const positions = ["Todos", "GK", "RB", "CB", "LB", "CM", "ST", "RW", "LW"];
+
+
+  
+const players = [
+
+  {
+    name: "Courtois",
+    position: "GK",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "/players/courtois.png"
+  },
+
+  {
+    name: "Peretz",
+    position: "GK",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "/players/peretz.png"
+  },
+
+  {
+    name: "Ederson",
+    position: "GK",
+    nation: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "/players/ederson.png"
+  },
+
+  {
+    name: "Ter Stegen",
+    position: "GK",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "/players/ter.png"
+  },
+
+  {
+    name: "Hakimi",
+    position: "RB",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Flag_of_Morocco.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/c/c7/Ligue1.svg",
+    image: "/players/hakimi.png"
+  },
+
+  {
+    name: "Carvajal",
+    position: "RB",
+    nation: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "/players/carvajal.png"
+  },
+
+  {
+    name: "Alexander-Arnold",
+    position: "RB",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "/players/arnold.png"
+  },
+
+  {
+    name: "Van Dijk",
+    position: "CB",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "/players/dijk.png"
+  },
+
+  {
+    name: "Rúben Dias",
+    position: "CB",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "/players/dias.png"
+  },
+
+  {
+    name: "Araújo",
+    position: "CB",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Uruguay.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "/players/araujo.png"
+  },
+
+  {
+    name: "Saliba",
+    position: "CB",
+    nation: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "/players/saliba.png"
+  },
+
+  {
+    name: "Theo Hernández",
+    position: "LB",
+    nation: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg",
+    image: "/players/theo.png"
+  },
+
+  {
+    name: "Davies",
+    position: "LB",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/d/df/Bundesliga_logo_%282017%29.svg",
+    image: "/players/davies.png"
+  },
+
+  {
+    name: "Bellingham",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "/players/jude.png"
+  },
+
+  {
+    name: "De Bruyne",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "/players/kevin.png"
+  },
+
+  {
+    name: "Rodri",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "/players/rodri.png"
+  },
+
+  {
+  name: "Gandelman",
+  position: "CM",
+  nation: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg",
+  league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+  image: "/players/gandel.png"
+},
+
+  {
+    name: "Pedri",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "/players/pedri.png"
+  },
+
+  {
+    name: "Valverde",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Uruguay.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "/players/fede.png"
+  },
+
+  {
+    name: "Musiala",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/d/df/Bundesliga_logo_%282017%29.svg",
+    image: "/players/musiala.png"
+  },
+
+  {
+    name: "Wirtz",
+    position: "CM",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/d/df/Bundesliga_logo_%282017%29.svg",
+    image: "/players/wirtz.png"
+  },
+
+  {
+    name: "Messi",
+    position: "RW",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/7/76/Major_League_Soccer_logo.svg",
+    image: "/players/messi.png"
+  },
+
+  {
+    name: "Saka",
+    position: "RW",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "/players/saka.png"
+  },
+
+  {
+    name: "Salah",
+    position: "RW",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "/players/salah.png"
+  },
+
+  {
+    name: "Vinicius",
+    position: "LW",
+    nation: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "/players/vini.png"
+  },
+
+  {
+    name: "Leão",
+    position: "LW",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg",
+    image: "/players/leao.png"
+  },
+
+  {
+  name: "Manor Solomon",
+  position: "LW",
+  nation: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg",
+  league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+  image: "/players/solomon.png"
+},
+
+
+  {
+    name: "Mbappé",
+    position: "ST",
+    nation: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
+    league: "https://upload.wikimedia.org/wikipedia/commons/0/0f/LaLiga_logo_2023.svg",
+    image: "/players/mbappe.png"
+  },
+
+  {
+    name: "Haaland",
+    position: "ST",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "/players/haaland.png"
+  },
+
+  {
+    name: "Kane",
+    position: "ST",
+    nation: "https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/d/df/Bundesliga_logo_%282017%29.svg",
+    image: "/players/kane.png"
+  },
+
+  {
+    name: "Osimhen",
+    position: "ST",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg",
+    image: "/players/osimhen.png"
+  },
+
+  {
+    name: "Álvarez",
+    position: "ST",
+    nation: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg",
+    league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    image: "/players/julian.png"
+  }
+
+];
+  
+
+  
+  
+  
+
+---
+
+<html lang="es">
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>TpIvoYuse</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+
+    body{
+      font-family:'Inter', sans-serif;
+      margin:0;
+      background:#f5f5f5;
+    }
+
+    /* NAVBAR */
+    .navbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:70px;
+      background:#39e735;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0 40px;
+      box-sizing:border-box;
+      z-index:1000;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logoContainer{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .logoCircle{
+      width:40px;
+      height:40px;
+      background:black;
+      border-radius:50%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .logoText{
+      font-size:24px;
+      font-weight:800;
+      color:black;
+    }
+
+    .navLinks{
+      display:flex;
+      gap:40px;
+    }
+
+    .navLinks a{
+      text-decoration:none;
+      color:black;
+      font-weight:700;
+      font-size:16px;
+      transition:0.2s;
+    }
+
+    .navLinks a:hover{
+      opacity:0.6;
+    }
+
+    /* MAIN */
+    main{
+      max-width:1300px;
+      margin:auto;
+      padding:120px 40px 40px;
+    }
+
+    /* HEADER */
+    .title{
+      font-size:56px;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+
+    .subtitle{
+      color:#777;
+      font-size:22px;
+      margin-bottom:40px;
+    }
+
+    /* SEARCH */
+    .searchContainer{
+      position:relative;
+      width:500px;
+      margin-bottom:40px;
+    }
+
+    .searchInput{
+      width:100%;
+      padding:16px 55px 16px 24px;
+      border-radius:999px;
+      border:3px solid black;
+      font-size:18px;
+      box-sizing:border-box;
+    }
+
+    .searchIcon{
+      position:absolute;
+      right:20px;
+      top:50%;
+      transform:translateY(-50%);
+      width:20px;
+      height:20px;
+    }
+
+    /* FILTERS */
+    .filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:60px;
+    }
+
+    .filterButton{
+      background:#39e735;
+      border:none;
+      padding:10px 22px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .filterButton:hover{
+      transform:scale(1.05);
+    }
+
+    /* SECTION */
+    .sectionTitle{
+      font-size:42px;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+
+    .sectionSubtitle{
+      color:#777;
+      font-size:20px;
+      margin-bottom:40px;
+    }
+
+    /* CARDS */
+    .playersGrid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:30px;
+    }
+
+    .playerCard{
+      width:210px;
+      background:#e5e7eb;
+      border-radius:35px;
+      padding:20px;
+      box-sizing:border-box;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      transition:0.25s;
+      cursor:pointer;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .playerCard:hover{
+      transform:scale(1.04);
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* PLAYER IMAGE */
+    .playerImageContainer{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  overflow:hidden;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+    .playerImage{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+    /* TEXT */
+    .playerName{
+      font-size:24px;
+      font-weight:800;
+      color:#333;
+      margin-bottom:4px;
+    }
+
+    .playerPosition{
+      color:#39e735;
+      font-size:18px;
+      font-weight:700;
+      margin-bottom:18px;
+    }
+
+    /* FLAGS */
+    .playerInfo{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .flag{
+      width:28px;
+      height:18px;
+      object-fit:cover;
+      border-radius:3px;
+    }
+
+    .leagueLogo{
+      width:22px;
+      height:22px;
+      object-fit:contain;
+    }
+
+    .selectedPlayer{
+  border:4px solid #39e735;
+  transform:scale(1.03);
+}
+.selectedSection{
+  margin-top:60px;
+}
+
+.selectedTitle{
+  font-size:32px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.selectedList{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding:0;
+}
+
+.selectedList li{
+  list-style:none;
+  background:white;
+  padding:14px 20px;
+  border-radius:14px;
+  width:300px;
+  font-weight:700;
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+.selectedHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.clearButton{
+  background:#ff3b3b;
+  color:white;
+  border:none;
+  padding:10px 18px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.clearButton:hover{
+  transform:scale(1.05);
+  opacity:0.9;
+}
+.selectedButtons{
+  display:flex;
+  gap:12px;
+}
+
+.saveButton{
+  background:#39e735;
+  color:black;
+  border:none;
+  padding:10px 18px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.saveButton:hover{
+  transform:scale(1.05);
+}
+
+.savedTeamsSection{
+  margin-top:50px;
+}
+
+.savedTeamsTitle{
+  font-size:32px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.savedTeamsContainer{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.savedTeam{
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+  width:400px;
+}
+
+.savedTeam h3{
+  margin-top:0;
+  margin-bottom:15px;
+  font-size:22px;
+}
+
+.savedTeam ul{
+  padding-left:20px;
+}
+
+.savedTeam li{
+  margin-bottom:6px;
+  font-weight:600;
+}
+
+.deleteTeamButton{
+  margin-top:15px;
+  background:#ff3b3b;
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.deleteTeamButton:hover{
+  transform:scale(1.05);
+  opacity:0.9;
+}
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+
+    <div class="logoContainer">
+
+      <div class="logoCircle">
+
+        <svg class="text-[#39e735] w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+
+        </svg>
+
+      </div>
+
+      <h1 class="logoText">
+        TpIvoYuse
+      </h1>
+
+    </div>
+
+    <div class="navLinks">
+
+      <a href="#">
+        Tus 11's
+      </a>
+
+      <a href="#">
+        Arma tu 11
+      </a>
+
+    </div>
+
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HEADER -->
+    <h1 class="title">
+      Arma tu 11
+    </h1>
+
+    <p class="subtitle">
+      Elegí 1 jugador por posición
+    </p>
+
+    <!-- SEARCH -->
+    <div class="searchContainer">
+
+      <input
+        type="text"
+        placeholder="Buscar jugador..."
+        class="searchInput"
+      />
+
+      <svg xmlns="http://www.w3.org/2000/svg"
+        class="searchIcon"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor">
+
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        />
+
+      </svg>
+
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filters">
+
+      {positions.map((pos) => (
+
+        <button
+          class="filterButton"
+          onclick={`filterPlayers('${pos}')`}
+        >
+
+          {pos}
+
+        </button>
+
+      ))}
+
+    </div>
+
+    <!-- SELECCIONADOS -->
+<div class="selectedSection">
+
+  <div class="selectedHeader">
+
+    <h2 class="selectedTitle">
+      Jugadores seleccionados
+    </h2>
+
+   <div class="selectedButtons">
+
+  <button id="saveButton" class="saveButton">
+    Guardar XI
+  </button>
+
+  <button id="clearButton" class="clearButton">
+    Eliminar lista
+  </button>
+
+</div>
+
+  </div>
+
+  <ul id="selectedPlayersList" class="selectedList">
+
+  </ul>
+
+</div>
+
+<!-- EQUIPOS GUARDADOS -->
+<div class="savedTeamsSection">
+
+  <h2 class="savedTeamsTitle">
+    Tus XI guardados
+  </h2>
+
+  <div id="savedTeamsContainer" class="savedTeamsContainer">
+
+  </div>
+
+</div>
+
+    <!-- SECTION -->
+    <h2 class="sectionTitle">
+      Jugadores
+    </h2>
+
+    <p class="sectionSubtitle">
+      Seleccioná tu jugador favorito
+    </p>
+
+    <!-- PLAYERS -->
+    <div class="playersGrid">
+
+      {players.map((player) => (
+
+        <div
+          class="playerCard"
+          data-position={player.position}
+        >
+
+          <!-- IMAGE -->
+          <div class="playerImageContainer">
+
+            <img
+              src={player.image}
+              alt={player.name}
+              class="playerImage"
+            />
+
+          </div>
+
+          <!-- NAME -->
+          <h3 class="playerName">
+
+            {player.name}
+
+          </h3>
+
+          <!-- POSITION -->
+          <p class="playerPosition">
+
+            {player.position}
+
+          </p>
+
+          <!-- INFO -->
+          <div class="playerInfo">
+
+            <img
+              src={player.nation}
+              class="flag"
+            />
+
+            <img
+              src={player.league}
+              class="leagueLogo"
+            />
+
+          </div>
+
+        </div>
+
+      ))}
+
+    </div>
+    
+
+  </main>
+
+  <!-- SCRIPT -->
+  <script>
+
+    const buttons = document.querySelectorAll(".filterButton");
+    const cards = document.querySelectorAll(".playerCard");
+  
+    // FILTRAR POR POSICION
+    buttons.forEach((button) => {
+  
+      button.addEventListener("click", () => {
+  
+        const position = button.textContent.trim();
+  
+        cards.forEach((card) => {
+  
+          const playerPosition = card.dataset.position;
+  
+          if(position === "Todos" || playerPosition === position){
+  
+            card.style.display = "flex";
+  
+          } else {
+  
+            card.style.display = "none";
+  
+          }
+  
+        });
+  
+      });
+  
+    });
+  
+    // SELECCIONAR JUGADORES
+      // LISTA
+  const selectedPlayersList = document.getElementById("selectedPlayersList");
+
+// SELECCIONAR JUGADORES
+cards.forEach((card) => {
+
+  card.addEventListener("click", () => {
+
+    card.classList.toggle("selectedPlayer");
+
+    updateSelectedPlayers();
+
+  });
+
+});
+
+// ACTUALIZAR LISTA
+function updateSelectedPlayers(){
+
+  selectedPlayersList.innerHTML = "";
+
+  const selectedCards = document.querySelectorAll(".selectedPlayer");
+
+  selectedCards.forEach((card) => {
+
+    const playerName = card.querySelector(".playerName").textContent;
+
+    const li = document.createElement("li");
+
+    li.textContent = playerName;
+
+    selectedPlayersList.appendChild(li);
+
+  });
+
+}
+  // BORRAR LISTA
+  const clearButton = document.getElementById("clearButton");
+  const saveButton = document.getElementById("saveButton");
+  const savedTeamsContainer = document.getElementById("savedTeamsContainer");
+
+let teamCount = 1;
+
+  clearButton.addEventListener("click", () => {
+
+    cards.forEach((card) => {
+
+      card.classList.remove("selectedPlayer");
+
+    });
+
+    updateSelectedPlayers();
+
+  });
+    // GUARDAR XI
+  saveButton.addEventListener("click", () => {
+
+    const selectedCards = document.querySelectorAll(".selectedPlayer");
+
+    if(selectedCards.length === 0) return;
+
+    const teamDiv = document.createElement("div");
+
+    teamDiv.classList.add("savedTeam");
+
+    const title = document.createElement("h3");
+
+    title.textContent = `XI #${teamCount}`;
+
+    const ul = document.createElement("ul");
+
+    selectedCards.forEach((card) => {
+
+      const playerName = card.querySelector(".playerName").textContent;
+
+      const li = document.createElement("li");
+
+      li.textContent = playerName;
+
+      ul.appendChild(li);
+
+    });
+
+        // BOTON ELIMINAR
+    const deleteButton = document.createElement("button");
+
+    deleteButton.textContent = "Eliminar XI";
+
+    deleteButton.classList.add("deleteTeamButton");
+
+    deleteButton.addEventListener("click", () => {
+
+      teamDiv.remove();
+
+    });
+
+    // AGREGAR ELEMENTOS
+    teamDiv.appendChild(title);
+
+    teamDiv.appendChild(ul);
+
+    teamDiv.appendChild(deleteButton);
+
+    savedTeamsContainer.appendChild(teamDiv);
+
+    teamCount++;
+
+  });
+  
+  </script>
+</body>
+</html>
