@@ -17,8 +17,12 @@ const jugadores = await getJugadores()
 
     {jugadores.map(j => (
       <div>
+        <img src={j.imagen} />    
         <h2>{j.nombre}</h2>
-        <p>{j.posicion} - {j.club}</p>
+    
+        <p>
+          {j.posicion} - {j.club}
+        </p>
       </div>
     ))}
   </body>
