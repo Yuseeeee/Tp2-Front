@@ -134,6 +134,14 @@ const players = [
   },
 
   {
+  name: "Gandelman",
+  position: "CM",
+  nation: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg",
+  league: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+  image: "/players/gandel.png"
+},
+
+  {
     name: "Pedri",
     position: "CM",
     nation: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
@@ -552,6 +560,81 @@ const players = [
   transform:scale(1.05);
   opacity:0.9;
 }
+.selectedButtons{
+  display:flex;
+  gap:12px;
+}
+
+.saveButton{
+  background:#39e735;
+  color:black;
+  border:none;
+  padding:10px 18px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.saveButton:hover{
+  transform:scale(1.05);
+}
+
+.savedTeamsSection{
+  margin-top:50px;
+}
+
+.savedTeamsTitle{
+  font-size:32px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.savedTeamsContainer{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.savedTeam{
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+  width:400px;
+}
+
+.savedTeam h3{
+  margin-top:0;
+  margin-bottom:15px;
+  font-size:22px;
+}
+
+.savedTeam ul{
+  padding-left:20px;
+}
+
+.savedTeam li{
+  margin-bottom:6px;
+  font-weight:600;
+}
+
+.deleteTeamButton{
+  margin-top:15px;
+  background:#ff3b3b;
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.deleteTeamButton:hover{
+  transform:scale(1.05);
+  opacity:0.9;
+}
 
   </style>
 
@@ -659,15 +742,36 @@ const players = [
       Jugadores seleccionados
     </h2>
 
-    <button id="clearButton" class="clearButton">
-      Eliminar lista
-    </button>
+   <div class="selectedButtons">
+
+  <button id="saveButton" class="saveButton">
+    Guardar XI
+  </button>
+
+  <button id="clearButton" class="clearButton">
+    Eliminar lista
+  </button>
+
+</div>
 
   </div>
 
   <ul id="selectedPlayersList" class="selectedList">
 
   </ul>
+
+</div>
+
+<!-- EQUIPOS GUARDADOS -->
+<div class="savedTeamsSection">
+
+  <h2 class="savedTeamsTitle">
+    Tus XI guardados
+  </h2>
+
+  <div id="savedTeamsContainer" class="savedTeamsContainer">
+
+  </div>
 
 </div>
 
@@ -811,6 +915,10 @@ function updateSelectedPlayers(){
 }
   // BORRAR LISTA
   const clearButton = document.getElementById("clearButton");
+  const saveButton = document.getElementById("saveButton");
+  const savedTeamsContainer = document.getElementById("savedTeamsContainer");
+
+let teamCount = 1;
 
   clearButton.addEventListener("click", () => {
 
@@ -821,6 +929,60 @@ function updateSelectedPlayers(){
     });
 
     updateSelectedPlayers();
+
+  });
+    // GUARDAR XI
+  saveButton.addEventListener("click", () => {
+
+    const selectedCards = document.querySelectorAll(".selectedPlayer");
+
+    if(selectedCards.length === 0) return;
+
+    const teamDiv = document.createElement("div");
+
+    teamDiv.classList.add("savedTeam");
+
+    const title = document.createElement("h3");
+
+    title.textContent = `XI #${teamCount}`;
+
+    const ul = document.createElement("ul");
+
+    selectedCards.forEach((card) => {
+
+      const playerName = card.querySelector(".playerName").textContent;
+
+      const li = document.createElement("li");
+
+      li.textContent = playerName;
+
+      ul.appendChild(li);
+
+    });
+
+        // BOTON ELIMINAR
+    const deleteButton = document.createElement("button");
+
+    deleteButton.textContent = "Eliminar XI";
+
+    deleteButton.classList.add("deleteTeamButton");
+
+    deleteButton.addEventListener("click", () => {
+
+      teamDiv.remove();
+
+    });
+
+    // AGREGAR ELEMENTOS
+    teamDiv.appendChild(title);
+
+    teamDiv.appendChild(ul);
+
+    teamDiv.appendChild(deleteButton);
+
+    savedTeamsContainer.appendChild(teamDiv);
+
+    teamCount++;
 
   });
   
