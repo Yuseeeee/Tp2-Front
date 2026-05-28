@@ -15,8 +15,7 @@ const jugadores = await getJugadores()
 
     {jugadores.length === 0 && <p>No hay jugadores</p>}
 
-    {jugadores.map(j => (
-      <div>
+{jugadores.map((j: any) => (      <div>
         <img src={j.imagen} />    
         <h2>{j.nombre}</h2>
     
