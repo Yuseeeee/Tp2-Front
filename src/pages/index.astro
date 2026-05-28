@@ -2,27 +2,629 @@
 import { getJugadores } from '../servicios/jugadores.js'
 
 const jugadores = await getJugadores()
+
+const positions = ["Todos", "GK", "RB", "CB", "LB", "CM", "ST", "RW", "LW"]
 ---
 
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Catálogo</title>
-  </head>
+<head>
 
-  <body>
-    <h1>Catálogo de jugadores ⚽</h1>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
 
-    {jugadores.length === 0 && <p>No hay jugadores</p>}
+  <title>TpIvoYuse</title>
 
-{jugadores.map((j: any) => (      <div>
-        <img src={j.imagen} />    
-        <h2>{j.nombre}</h2>
-    
-        <p>
-          {j.posicion} - {j.club}
-        </p>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+
+    body{
+      font-family:'Inter', sans-serif;
+      margin:0;
+      background:#f5f5f5;
+    }
+
+    .navbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:70px;
+      background:#39e735;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0 40px;
+      box-sizing:border-box;
+      z-index:1000;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logoContainer{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .logoCircle{
+      width:40px;
+      height:40px;
+      background:black;
+      border-radius:50%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .logoText{
+      font-size:24px;
+      font-weight:800;
+      color:black;
+    }
+
+    .navLinks{
+      display:flex;
+      gap:40px;
+    }
+
+    .navLinks a{
+      text-decoration:none;
+      color:black;
+      font-weight:700;
+      font-size:16px;
+      transition:0.2s;
+    }
+
+    .navLinks a:hover{
+      opacity:0.6;
+    }
+
+    main{
+      max-width:1300px;
+      margin:auto;
+      padding:120px 40px 40px;
+    }
+
+    .title{
+      font-size:56px;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+
+    .subtitle{
+      color:#777;
+      font-size:22px;
+      margin-bottom:40px;
+    }
+
+    .filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:60px;
+    }
+
+    .filterButton{
+      background:#39e735;
+      border:none;
+      padding:10px 22px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .filterButton:hover{
+      transform:scale(1.05);
+    }
+
+    .sectionTitle{
+      font-size:42px;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+
+    .sectionSubtitle{
+      color:#777;
+      font-size:20px;
+      margin-bottom:40px;
+    }
+
+    .playersGrid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:30px;
+    }
+
+    .playerCard{
+      width:210px;
+      background:#e5e7eb;
+      border-radius:35px;
+      padding:20px;
+      box-sizing:border-box;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      transition:0.25s;
+      cursor:pointer;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .playerCard:hover{
+      transform:scale(1.04);
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .playerImageContainer{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      overflow:hidden;
+      background:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .playerImage{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    .playerName{
+      font-size:24px;
+      font-weight:800;
+      color:#333;
+      margin-bottom:4px;
+    }
+
+    .playerPosition{
+      color:#39e735;
+      font-size:18px;
+      font-weight:700;
+      margin-bottom:18px;
+    }
+
+    .playerInfo{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .selectedPlayer{
+      border:4px solid #39e735;
+      transform:scale(1.03);
+    }
+
+    .selectedSection{
+      margin-top:60px;
+    }
+
+    .selectedTitle{
+      font-size:32px;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+
+    .selectedList{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      padding:0;
+    }
+
+    .selectedList li{
+      list-style:none;
+      background:white;
+      padding:14px 20px;
+      border-radius:14px;
+      width:300px;
+      font-weight:700;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .selectedHeader{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:20px;
+    }
+
+    .clearButton{
+      background:#ff3b3b;
+      color:white;
+      border:none;
+      padding:10px 18px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .clearButton:hover{
+      transform:scale(1.05);
+      opacity:0.9;
+    }
+
+    .selectedButtons{
+      display:flex;
+      gap:12px;
+    }
+
+    .saveButton{
+      background:#39e735;
+      color:black;
+      border:none;
+      padding:10px 18px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .saveButton:hover{
+      transform:scale(1.05);
+    }
+
+    .savedTeamsSection{
+      margin-top:50px;
+    }
+
+    .savedTeamsTitle{
+      font-size:32px;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+
+    .savedTeamsContainer{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .savedTeam{
+      background:white;
+      padding:20px;
+      border-radius:18px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.08);
+      width:400px;
+    }
+
+    .savedTeam h3{
+      margin-top:0;
+      margin-bottom:15px;
+      font-size:22px;
+    }
+
+    .savedTeam ul{
+      padding-left:20px;
+    }
+
+    .savedTeam li{
+      margin-bottom:6px;
+      font-weight:600;
+    }
+
+    .deleteTeamButton{
+      margin-top:15px;
+      background:#ff3b3b;
+      color:white;
+      border:none;
+      padding:10px 16px;
+      border-radius:10px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .deleteTeamButton:hover{
+      transform:scale(1.05);
+      opacity:0.9;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <nav class="navbar">
+
+    <div class="logoContainer">
+
+      <div class="logoCircle"></div>
+
+      <h1 class="logoText">
+        TpIvoYuse
+      </h1>
+
+    </div>
+
+    <div class="navLinks">
+
+      <a href="#">
+        Tus 11's
+      </a>
+
+      <a href="#">
+        Arma tu 11
+      </a>
+
+    </div>
+
+  </nav>
+
+  <main>
+
+    <h1 class="title">
+      Arma tu 11
+    </h1>
+
+    <p class="subtitle">
+      Elegí 1 jugador por posición
+    </p>
+
+    <div class="filters">
+
+      {positions.map((pos) => (
+
+        <button class="filterButton">
+
+          {pos}
+
+        </button>
+
+      ))}
+
+    </div>
+
+    <div class="selectedSection">
+
+      <div class="selectedHeader">
+
+        <h2 class="selectedTitle">
+          Jugadores seleccionados
+        </h2>
+
+        <div class="selectedButtons">
+
+          <button id="saveButton" class="saveButton">
+            Guardar XI
+          </button>
+
+          <button id="clearButton" class="clearButton">
+            Eliminar lista
+          </button>
+
+        </div>
+
       </div>
-    ))}
-  </body>
+
+      <ul id="selectedPlayersList" class="selectedList"></ul>
+
+    </div>
+
+    <div class="savedTeamsSection">
+
+      <h2 class="savedTeamsTitle">
+        Tus XI guardados
+      </h2>
+
+      <div id="savedTeamsContainer" class="savedTeamsContainer"></div>
+
+    </div>
+
+    <h2 class="sectionTitle">
+      Jugadores
+    </h2>
+
+    <p class="sectionSubtitle">
+      Seleccioná tu jugador favorito
+    </p>
+
+    <div class="playersGrid">
+
+      {jugadores.map((j: any) => (
+
+        <div
+          class="playerCard"
+          data-position={j.posicion}
+        >
+
+          <div class="playerImageContainer">
+
+            <img
+              src={j.imagen}
+              alt={j.nombre}
+              class="playerImage"
+            />
+
+          </div>
+
+          <h3 class="playerName">
+            {j.nombre}
+          </h3>
+
+          <p class="playerPosition">
+            {j.posicion}
+          </p>
+
+          <div class="playerInfo">
+
+            <p>
+              {j.club}
+            </p>
+
+          </div>
+
+        </div>
+
+      ))}
+
+    </div>
+
+  </main>
+
+  <script>
+
+  const buttons = document.querySelectorAll(".filterButton");
+  const cards = document.querySelectorAll(".playerCard");
+
+  buttons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+      const position = button.textContent?.trim();
+
+      cards.forEach((card) => {
+
+        const htmlCard = card as HTMLElement;
+
+        const playerPosition = htmlCard.dataset.position;
+
+        if(position === "Todos" || playerPosition === position){
+
+          htmlCard.style.display = "flex";
+
+        } else {
+
+          htmlCard.style.display = "none";
+
+        }
+
+      });
+
+    });
+
+  });
+
+  const selectedPlayersList = document.getElementById("selectedPlayersList") as HTMLElement;
+
+  cards.forEach((card) => {
+
+    card.addEventListener("click", () => {
+
+      const htmlCard = card as HTMLElement;
+
+      const position = htmlCard.dataset.position;
+
+      const alreadySelected = document.querySelector(
+        `.selectedPlayer[data-position="${position}"]`
+      ) as HTMLElement | null;
+
+      if(alreadySelected && alreadySelected !== htmlCard){
+
+        alreadySelected.classList.remove("selectedPlayer");
+
+      }
+
+      htmlCard.classList.toggle("selectedPlayer");
+
+      updateSelectedPlayers();
+
+    });
+
+  });
+
+  function updateSelectedPlayers(){
+
+    selectedPlayersList.innerHTML = "";
+
+    const selectedCards = document.querySelectorAll(".selectedPlayer");
+
+    selectedCards.forEach((card) => {
+
+      const playerName =
+        card.querySelector(".playerName")?.textContent || "";
+
+      const li = document.createElement("li");
+
+      li.textContent = playerName;
+
+      selectedPlayersList.appendChild(li);
+
+    });
+
+  }
+
+  const clearButton = document.getElementById("clearButton") as HTMLButtonElement;
+
+  const saveButton = document.getElementById("saveButton") as HTMLButtonElement;
+
+  const savedTeamsContainer = document.getElementById("savedTeamsContainer") as HTMLElement;
+
+  let teamCount = 1;
+
+  clearButton.addEventListener("click", () => {
+
+    cards.forEach((card) => {
+
+      card.classList.remove("selectedPlayer");
+
+    });
+
+    updateSelectedPlayers();
+
+  });
+
+  saveButton.addEventListener("click", () => {
+
+    const selectedCards = document.querySelectorAll(".selectedPlayer");
+
+    if(selectedCards.length === 0) return;
+
+    const teamDiv = document.createElement("div");
+
+    teamDiv.classList.add("savedTeam");
+
+    const title = document.createElement("h3");
+
+    title.textContent = `XI #${teamCount}`;
+
+    const ul = document.createElement("ul");
+
+    selectedCards.forEach((card) => {
+
+      const playerName =
+        card.querySelector(".playerName")?.textContent || "";
+
+      const li = document.createElement("li");
+
+      li.textContent = playerName;
+
+      ul.appendChild(li);
+
+    });
+
+    const deleteButton = document.createElement("button");
+
+    deleteButton.textContent = "Eliminar XI";
+
+    deleteButton.classList.add("deleteTeamButton");
+
+    deleteButton.addEventListener("click", () => {
+
+      teamDiv.remove();
+
+    });
+
+    teamDiv.appendChild(title);
+
+    teamDiv.appendChild(ul);
+
+    teamDiv.appendChild(deleteButton);
+
+    savedTeamsContainer.appendChild(teamDiv);
+
+    teamCount++;
+
+  });
+
+</script>
+
+</body>
 </html>
